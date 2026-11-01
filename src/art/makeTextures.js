@@ -40,10 +40,13 @@ export function createTextures(scene) {
   makeTexture(scene, 'hero-side-1', S.HERO_SIDE_1);
   makeTexture(scene, 'hero-side-2', S.HERO_SIDE_2);
 
-  // Fiender och vapen
+  // Fiender, motorsåg och små effekter
   makeTexture(scene, 'slime-1', S.SLIME_1);
   makeTexture(scene, 'slime-2', S.SLIME_2);
-  makeTexture(scene, 'sword', S.SWORD);
+  makeTexture(scene, 'chainsaw-1', S.CHAINSAW_1);
+  makeTexture(scene, 'chainsaw-2', S.CHAINSAW_2);
+  makeTexture(scene, 'spark', S.SPARK);
+  makeTexture(scene, 'chip', S.CHIP);
   makeTexture(scene, 'puff', S.PUFF);
 
   // Kartrutor
@@ -77,6 +80,14 @@ export function createAnimations(scene) {
     key: 'slime-wobble',
     frames: [{ key: 'slime-1' }, { key: 'slime-2' }],
     frameRate: 3,
+    repeat: -1,
+  });
+
+  // Kedjan snurrar snabbt så länge sågen är igång
+  scene.anims.create({
+    key: 'chainsaw-run',
+    frames: [{ key: 'chainsaw-1' }, { key: 'chainsaw-2' }],
+    frameRate: 18,
     repeat: -1,
   });
 }

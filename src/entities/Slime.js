@@ -1,6 +1,6 @@
 // =====================================================================
 //  Slime – en enkel fiende som vandrar runt slumpmässigt.
-//  Tål 3 svärdshugg och knuffas bakåt när den träffas.
+//  Tål 3 träffar från motorsågen och knuffas bakåt när den träffas.
 // =====================================================================
 
 // Möjliga riktningar: stå still, höger, vänster, ner, upp
@@ -49,18 +49,19 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
     this.moveTimer = Phaser.Math.Between(700, 1800); // millisekunder
   }
 
-  // Träffad av svärdet. (fromX, fromY) = var hjälten står.
+  // Träffad av motorsågen. (fromX, fromY) = var hjälten står.
   takeHit(fromX, fromY) {
     if (this.hurt) return;
     this.hp -= 1;
     this.hurt = true;
     this.setTintFill(0xffffff); // blinka vitt
 
-    // Knuffa bort från hjälten
+    // Kort knuff bort från hjälten. Inte för hård – annars tappar
+    // sågen kontakten direkt och man måste jaga ikapp hela tiden.
     const angle = Phaser.Math.Angle.Between(fromX, fromY, this.x, this.y);
-    this.setVelocity(Math.cos(angle) * 200, Math.sin(angle) * 200);
+    this.setVelocity(Math.cos(angle) * 140, Math.sin(angle) * 140);
 
-    this.scene.time.delayedCall(150, () => {
+    this.scene.time.delayedCall(130, () => {
       if (!this.active) return; // kan redan vara borta
       this.clearTint();
       this.hurt = false;

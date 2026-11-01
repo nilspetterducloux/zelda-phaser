@@ -1,8 +1,9 @@
 # Mini-Zelda i Phaser 3 (8-bit)
 
 Ett litet top-down-äventyr i NES-stil, byggt från grunden med [Phaser 3](https://docs.phaser.io/) (v3.90.0).
-All grafik – hjälten, slajmen, träden, hjärtan och till och med typsnittet – ritas **i kod** som små
-pixel-matriser. Inga bildfiler, inget byggsteg.
+Hjälten har varken tunika eller mössa – bara kalsonger – och slåss med en motorsåg.
+All grafik – hjälten, slajmen, motorsågen, träden, hjärtan och till och med typsnittet – ritas **i kod** som små
+pixel-matriser. Inga bildfiler, inget byggsteg. Ljudet till sågen skapas i webbläsaren, utan ljudfiler.
 
 ![Skärmdump](screenshot.png)
 
@@ -25,13 +26,13 @@ Phaser laddas från jsDelivr, så du behöver internet första gången.
 
 ## Kontroller
 
-| Tangent              | Vad som händer                      |
-|----------------------|-------------------------------------|
-| Piltangenter / WASD  | Gå åt fyra håll                     |
-| Mellanslag           | Hugg med svärdet åt det håll du tittar |
-| R                    | Börja om (efter game over eller vinst) |
+| Tangent                | Vad som händer                                                         |
+|------------------------|------------------------------------------------------------------------|
+| Piltangenter / WASD    | Gå åt fyra håll                                                        |
+| Mellanslag (håll inne) | Kör motorsågen åt det håll du tittar. Du kan gå långsammare samtidigt. |
+| R                      | Börja om (efter game over eller vinst)                                 |
 
-Du har tre hjärtan (varje träff kostar ett halvt). Slajmen tål tre hugg. Besegra alla fyra för att vinna!
+Du har tre hjärtan (varje träff kostar ett halvt). Slajmen tål tre träffar från motorsågen – håll sågen mot den en kort stund. Besegra alla fyra för att vinna!
 
 ## Filstruktur
 
@@ -54,7 +55,7 @@ zelda-phaser/
     │   ├── GameScene.js    Världen: karta, kamera, kollisioner, game over/vinst
     │   └── UIScene.js      HUD: hjärtan, antal slajm och meddelanden
     └── entities/
-        ├── Player.js       Hjälten: rörelse, svärd, skada, knuff, osårbarhet
+        ├── Player.js       Hjälten: rörelse, motorsåg, skada, knuff, osårbarhet
         └── Slime.js        Fienden: slumpvis vandring, träffar och död
 ```
 

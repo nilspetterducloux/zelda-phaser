@@ -70,9 +70,9 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.slimes, (player, slime) => {
       player.takeDamage(slime);
     });
-    // Svärdets träffyta skadar slajm
-    this.physics.add.overlap(this.player.swordHitbox, this.slimes, (hitbox, slime) => {
-      this.player.swordHits(slime);
+    // Motorsågens träffyta skadar slajm så länge den är igång och rör vid dem
+    this.physics.add.overlap(this.player.sawHitbox, this.slimes, (hitbox, slime) => {
+      this.player.sawHits(slime);
     });
 
     // ---------- 5. Kamera ----------
@@ -120,6 +120,7 @@ export default class GameScene extends Phaser.Scene {
     this.registry.set('status', status);
     this.physics.pause(); // frys all rörelse
     this.player.anims.stop();
+    this.player.stopSaw(); // så att brummandet inte ligger kvar efter slut
     if (status === 'gameover') this.player.setTint(0x7c7c7c);
   }
 

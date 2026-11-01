@@ -20,4 +20,7 @@ export const PALETTE = {
   u: 0x0058f8, // blå
   t: 0xfcd8a8, // sand
   T: 0xe0a870, // mörkare sand (prickar)
+  n: 0xc84c0c, // mörk hud (skugga, navel)
+  o: 0xfc5800, // orange (motorsågens kropp)
+  p: 0xf87880, // rosa (kinder)
 };

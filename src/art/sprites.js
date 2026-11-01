@@ -4,67 +4,69 @@
 //  Testa att ändra ett tecken och ladda om sidan – då ser du direkt resultatet!
 // =====================================================================
 
-// ---------- HJÄLTEN (grön tunika, som en viss känd hjälte...) ----------
-// Framifrån (går nedåt). Bilden är lite osymmetrisk – den speglade
-// versionen blir andra steget i gånganimationen.
+// ---------- HJÄLTEN (bar överkropp, bara kalsonger, ingen mössa) ----------
+// Framifrån (går nedåt). Mustasch, rosa kinder och randiga kalsonger.
+// Bilden är lite osymmetrisk – den speglade versionen blir andra steget.
 export const HERO_DOWN = [
   '................',
-  '......GGGG......',
-  '.....GGGGGG.....',
-  '....GGGGGGGGG...',
-  '....BssssssB.GG.',
-  '....sKssssKs....',
-  '....ssssssss....',
-  '.....ssssss.....',
-  '...GGGGGGGGGG...',
-  '..sGGGbbbbGGGs..',
-  '..sGGGGyyGGGGs..',
-  '....GGGGGGGG....',
-  '....GGGGGGGG....',
-  '....BBB..BBB....',
-  '.........BBB....',
-  '................',
+  '.....KKKKK......',
+  '....KBBBBBK.....',
+  '...KsWKssKWsK...',
+  '...KssssssssK...',
+  '...KspKKKKpsK...',
+  '....KssssssK....',
+  '......ssss......',
+  '..Ks.ssssss.sK..',
+  '.Kss.ssnnss.ssK.',
+  '.Ks.sssssss.sK..',
+  '..KWWWWWWWWWK...',
+  '...WrWrWrWrWr...',
+  '...WWWWWWWWWW...',
+  '....ss....sss...',
+  '...KsK....KsK...',
 ];
 
-// Bakifrån (går uppåt)
+// Bakifrån (går uppåt): hår, nacke, bar rygg och kalsongerna bakifrån
 export const HERO_UP = [
   '................',
-  '......GGGG......',
-  '.....GGGGGG.....',
-  '....GGGGGGGGG...',
-  '....GGGGGGGGGGG.',
-  '....BBBBBBBB....',
-  '....BBBBBBBB....',
-  '.....BBBBBB.....',
-  '...GGGGGGGGGG...',
-  '..sGGGGGGGGGGs..',
-  '..sGGGbbbbGGGs..',
-  '....GGGGGGGG....',
-  '....GGGGGGGG....',
-  '....BBB..BBB....',
-  '....BBB.........',
-  '................',
+  '.....KKKKK......',
+  '....KBBBBBK.....',
+  '...KBBBBBBBBK...',
+  '..KsBBBBBBBBsK..',
+  '..KBBBBBBBBBBK..',
+  '...KBBBBBBBBK...',
+  '......ssss......',
+  '..Ks.ssssss.sK..',
+  '.Kss.ssssss.ssK.',
+  '.Ks.sssssss.sK..',
+  '..KWWWWWWWWWK...',
+  '...WrWrWrWrWr...',
+  '...WWWWWWWWWW...',
+  '...sss....ss....',
+  '...KsK....KsK...',
 ];
 
-// Från sidan (tittar åt höger). Vänster = samma bild speglad (flipX).
+// Från sidan (tittar åt höger). Näsan pekar åt höger så man ser riktningen.
+// Vänster = samma bild speglad (flipX).
 const HERO_SIDE_TOP = [
   '................',
-  '.....GGGGG......',
-  '....GGGGGGG.....',
-  '...GGGGGGGGG....',
-  '..GG.BBBssss....',
-  '.G...BBsssKs....',
-  '.....BBsssssss..',
-  '......sssss.....',
-  '.....GGGGGG.....',
-  '.....GGGGsss....',
-  '.....bbbbbb.....',
-  '.....GGGGGG.....',
-  '.....GGGGGG.....',
+  '....KKKKK.......',
+  '...KBBBBBK......',
+  '..KBsWsssK......',
+  '.KBsssssssK.....',
+  '..KBssssssK.....',
+  '...KsrrssK......',
+  '....KsssK.......',
+  '....KsssK.......',
+  '...KsssssK......',
+  '..KssnnsssK.....',
+  '..KssssssK......',
+  '..KWWWWWWK......',
+  '...WrWrWWK......',
 ];
 // Två olika benställningar = två steg i animationen
-export const HERO_SIDE_1 = [...HERO_SIDE_TOP, '.....BB..BB.....', '....BB....BB....', '................'];
-export const HERO_SIDE_2 = [...HERO_SIDE_TOP, '......BBBB......', '......BBBB......', '................'];
+export const HERO_SIDE_1 = [...HERO_SIDE_TOP, '..Ks....Ks......', '..KK....KK......'];
+export const HERO_SIDE_2 = [...HERO_SIDE_TOP, '...KssK.........', '...KKKK.........'];
 
 // ---------- SLAJM (två bildrutor: normal och hopklämd) ----------
 export const SLIME_1 = [
@@ -104,24 +106,56 @@ export const SLIME_2 = [
   '................',
 ];
 
-// ---------- SVÄRD (pekar uppåt – vi roterar det i koden) ----------
-export const SWORD = [
-  '.......W........',
-  '......WeW.......',
-  '......WeW.......',
-  '......WeW.......',
-  '......WeW.......',
-  '......WeW.......',
-  '......WeW.......',
-  '......WeW.......',
-  '....yyyyyyy.....',
-  '.......b........',
-  '.......b........',
-  '.......y........',
-  '................',
-  '................',
-  '................',
-  '................',
+// ---------- MOTORSÅG (pekar uppåt – vi roterar den i koden) ----------
+// Stången med kedjan är överst, den orange motorn under.
+// Två bildrutor: tänderna på kedjan hoppar ett steg så att sågen ser ut att gå.
+export const CHAINSAW_1 = [
+  '.......KK.......',
+  '......KeWK......',
+  '.....K.eW.K.....',
+  '......KeWK......',
+  '.....K.We.K.....',
+  '......KWeK......',
+  '.....K.eW.K.....',
+  '......KeWK......',
+  '......KWWK......',
+  '....KKKKKKKK....',
+  '...KooyyyyoK....',
+  '..KooyyKyyyoK...',
+  '...KooyyyyoK....',
+  '....KooooooK....',
+  '.....KbbbbK.....',
+  '......KKKK......',
+];
+export const CHAINSAW_2 = [
+  '.......KK.......',
+  '......KWeK......',
+  '.....K.We.K.....',
+  '......KWeK......',
+  '.....K.eW.K.....',
+  '......KeWK......',
+  '.....K.We.K.....',
+  '......KWeK......',
+  '......KWWK......',
+  '....KKKKKKKK....',
+  '...KooyyyyoK....',
+  '..KooyyKyyyoK...',
+  '...KooyyyyoK....',
+  '....KooooooK....',
+  '.....KbbbbK.....',
+  '......KKKK......',
+];
+
+// Liten gnista / flisa som flyger från kedjan (3x3)
+export const SPARK = [
+  '.y.',
+  'yWy',
+  '.y.',
+];
+export const CHIP = [
+  '.e.',
+  'eEe',
+  '.b.',
 ];
 
 // ---------- MARKRUTOR (tiles) ----------
