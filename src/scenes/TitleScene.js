@@ -7,8 +7,8 @@
 import { FONT_KEY } from '../art/font.js';
 
 // Underrubrik precis under den stora titeln.
-// Byt texten här om du vill ha en rad till. Tom sträng = inget ritas.
-export const TITLE_SUBTITLE = '';
+// Byt texten här om du vill ha en annan rad. Tom sträng = inget ritas.
+export const TITLE_SUBTITLE = 'THE WAY OF THE BAJSKÖRV';
 
 const TITLE = 'MOTORSÅGEN #4';
 const PROMPT = 'TRYCK PÅ MELLANSLAG FÖR ATT STARTA';
@@ -207,10 +207,9 @@ export default class TitleScene extends Phaser.Scene {
     // 18 px * 13 tecken får plats på 256 px, med lite luft för kanten.
     this.outlinedText(128, 16, TITLE, 18, 0xf83000, 0x140004);
 
+    // Mindre än titeln, gulvit med tunn mörk kant. 23 tecken * 8 px får plats.
     if (TITLE_SUBTITLE) {
-      this.add.bitmapText(128, 36, FONT_KEY, TITLE_SUBTITLE)
-        .setOrigin(0.5)
-        .setTint(0xfce8a0);
+      this.outlinedText(128, 38, TITLE_SUBTITLE, 8, 0xfce8a0, 0x140004, 1);
     }
 
     // Blinkar längst ner på den mörka marken. Utan storlek = en pixel per ruta.
@@ -227,11 +226,11 @@ export default class TitleScene extends Phaser.Scene {
   }
 
   // Ritar samma text flera gånger, ett steg åt sidan, som en kantlinje.
-  outlinedText(x, y, text, size, fill, outline) {
-    const offsets = [
-      [-2, 0], [2, 0], [0, -2], [0, 2],
-      [-1, -1], [1, -1], [-1, 1], [1, 1],
-    ];
+  // spread är hur många pixlar kanten sticker ut (2 på titeln, 1 på den lilla raden).
+  outlinedText(x, y, text, size, fill, outline, spread = 2) {
+    const offsets = spread >= 2
+      ? [[-2, 0], [2, 0], [0, -2], [0, 2], [-1, -1], [1, -1], [-1, 1], [1, 1]]
+      : [[-1, 0], [1, 0], [0, -1], [0, 1]];
     for (const [ox, oy] of offsets) {
       this.add.bitmapText(x + ox, y + oy, FONT_KEY, text, size)
         .setOrigin(0.5)
