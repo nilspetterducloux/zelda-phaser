@@ -1,10 +1,11 @@
 // =====================================================================
 //  GameScene – själva spelvärlden: karta, hjälte, fiender och kollisioner
 // =====================================================================
-import { MAP, TILE_SIZE, WALL_TILES } from '../data/map.js?v=3';
-import Player from '../entities/Player.js?v=3';
-import Slime from '../entities/Slime.js?v=3';
-import Kulbjorn from '../entities/Kulbjorn.js?v=3';
+import Player from '../entities/Player.js?v=4';
+import Slime from '../entities/Slime.js?v=4';
+import Kulbjorn from '../entities/Kulbjorn.js?v=4';
+import { generateOverworld, overworldRows, WORLD } from '../data/overworld.js?v=4';
+import { SOLID } from '../art/terrain.js?v=4';
 
 const HUD_HEIGHT = 16; // höjden på den svarta HUD-listan överst (pixlar)
 
@@ -17,60 +18,36 @@ export default class GameScene extends Phaser.Scene {
     // "status" kan vara 'playing', 'gameover' eller 'won'
     this.status = 'playing';
 
-    // ---------- 1. Bygg kartan ----------
-    // Gör om kartans strängar till en 2D-array: grid[rad][kolumn]
-    this.grid = MAP.map((row) => row.split(''));
-    const rows = this.grid.length;
-    const cols = Math.max(...MAP.map((r) => r.length));
-    const worldWidth = cols * TILE_SIZE;
-    const worldHeight = rows * TILE_SIZE;
-
-    // En statisk fysikgrupp för väggar – de rör sig aldrig
-    this.walls = this.physics.add.staticGroup();
-
-    let playerStart = { x: 64, y: 64 };
-    const slimeStarts = [];
-    const kulStarts = [];
-
-    this.grid.forEach((row, ty) => {
-      row.forEach((char, tx) => {
-        // Mitten av rutan i pixlar
-        const x = tx * TILE_SIZE + TILE_SIZE / 2;
-        const y = ty * TILE_SIZE + TILE_SIZE / 2;
-
-        // Marken ritas under allt (gräs eller sand)
-        const groundKey = char === ',' ? 'grass' : 'sand';
-        this.add.image(x, y, groundKey).setDepth(-1000);
-
-        if (WALL_TILES[char]) {
-          // En vägg: bild + statisk kollisionskropp
-          const wall = this.walls.create(x, y, WALL_TILES[char]);
-          wall.setDepth(y); // djup efter y-led så att saker hamnar bakom/framför rätt
-        } else if (char === 'P') {
-          playerStart = { x, y };
-        } else if (char === 'S') {
-          slimeStarts.push({ x, y });
-        } else if (char === 'C') {
-          kulStarts.push({ x, y });
-        }
-      });
+    // ---------- 1. Den stora kartan över Arvika ----------
+    const world = generateOverworld();
+    const worldWidth = WORLD * 16;
+    const worldHeight = WORLD * 16;
+    const map = this.make.tilemap({
+      data: overworldRows(world.tiles),
+      tileWidth: 16,
+      tileHeight: 16,
     });
+    const tileset = map.addTilesetImage('terrain', 'terrain', 16, 16, 0, 0, 0);
+    const ground = map.createLayer(0, tileset, 0, 0);
+    ground.setDepth(0);
+    // Vatten, berg, hus och träd går inte att gå igenom.
+    ground.setCollision([...SOLID]);
 
-    // Världens kanter = kartans kanter
     this.physics.world.setBounds(0, 0, worldWidth, worldHeight);
 
-    // ---------- 2. Hjälten ----------
-    this.player = new Player(this, playerStart.x, playerStart.y);
+    // ---------- 2. Hjälten, mitt på Stora torget ----------
+    this.player = new Player(this, world.player.x, world.player.y);
 
-    // ---------- 3. Fiender ----------
-    // runChildUpdate: true gör att varje fiendes update() anropas automatiskt
+    // ---------- 3. Fiender ute i markerna ----------
     this.enemies = this.physics.add.group({ runChildUpdate: true });
-    slimeStarts.forEach((pos) => this.enemies.add(new Slime(this, pos.x, pos.y)));
-    kulStarts.forEach((pos) => this.enemies.add(new Kulbjorn(this, pos.x, pos.y)));
+    world.spawns.forEach((spot) => {
+      const Enemy = spot.type === 'kul' ? Kulbjorn : Slime;
+      this.enemies.add(new Enemy(this, spot.x, spot.y));
+    });
 
     // ---------- 4. Kollisioner ----------
-    this.physics.add.collider(this.player, this.walls);
-    this.physics.add.collider(this.enemies, this.walls);
+    this.physics.add.collider(this.player, ground);
+    this.physics.add.collider(this.enemies, ground);
     // En fiende som nuddar hjälten skadar honom
     this.physics.add.overlap(this.player, this.enemies, (player, enemy) => {
       player.takeDamage(enemy);

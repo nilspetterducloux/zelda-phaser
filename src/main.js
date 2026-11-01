@@ -2,10 +2,10 @@
 //  main.js – startpunkten för spelet
 //  Här ställer vi in Phaser: upplösning, skalning, fysik och scener.
 // =====================================================================
-import BootScene from './scenes/BootScene.js?v=3';
-import TitleScene from './scenes/TitleScene.js?v=3';
-import GameScene from './scenes/GameScene.js?v=3';
-import UIScene from './scenes/UIScene.js?v=3';
+import BootScene from './scenes/BootScene.js?v=4';
+import TitleScene from './scenes/TitleScene.js?v=4';
+import GameScene from './scenes/GameScene.js?v=4';
+import UIScene from './scenes/UIScene.js?v=4';
 
 const config = {
   type: Phaser.AUTO,          // WebGL om det finns, annars Canvas
