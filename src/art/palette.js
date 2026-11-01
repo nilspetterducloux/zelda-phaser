@@ -23,5 +23,9 @@ export const PALETTE = {
   n: 0xc84c0c, // mörk hud (skugga, navel)
   o: 0xfc5800, // orange (motorsågens kropp)
   p: 0xf87880, // rosa (kinder)
-  f: 0x8c4818, // brun päls (kulbjörnens bollar)
+  f: 0x8c4818, // brun päls
+  Q: 0xfcd088, // ljus orange (kulbjörnens högdager)
+  q: 0xf0a040, // orange (kulbjörnens kropp)
+  j: 0xe07830, // mörkare orange
+  N: 0x984014, // mörkaste orange, skugga under bollarna
 };

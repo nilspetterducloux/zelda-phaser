@@ -4,7 +4,7 @@
 //  torra buskar och hjälten som en mörk silhuett underifrån
 //  med motorsågen lyft över huvudet.
 // =====================================================================
-import { FONT_KEY } from '../art/font.js?v=4';
+import { FONT_KEY } from '../art/font.js?v=5';
 
 // Underrubrik precis under den stora titeln.
 // Byt texten här om du vill ha en annan rad. Tom sträng = inget ritas.

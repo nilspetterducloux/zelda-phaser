@@ -17,8 +17,8 @@ export default class Kulbjorn extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
 
-    // Hela säcken är kroppen, så träffytan är nästan hela spriten
-    this.body.setSize(14, 12).setOffset(1, 3);
+    // Träffytan sitter på de två bollarna, inte på den smala toppen
+    this.body.setSize(20, 16).setOffset(2, 14);
     this.setCollideWorldBounds(true);
     this.anims.play('kulbjorn-waddle');
     this.anims.setProgress(Math.random());

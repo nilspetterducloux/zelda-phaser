@@ -1,11 +1,11 @@
 // =====================================================================
 //  GameScene – själva spelvärlden: karta, hjälte, fiender och kollisioner
 // =====================================================================
-import Player from '../entities/Player.js?v=4';
-import Slime from '../entities/Slime.js?v=4';
-import Kulbjorn from '../entities/Kulbjorn.js?v=4';
-import { generateOverworld, overworldRows, WORLD } from '../data/overworld.js?v=4';
-import { SOLID } from '../art/terrain.js?v=4';
+import Player from '../entities/Player.js?v=5';
+import Slime from '../entities/Slime.js?v=5';
+import Kulbjorn from '../entities/Kulbjorn.js?v=5';
+import { generateOverworld, overworldRows, WORLD } from '../data/overworld.js?v=5';
+import { SOLID } from '../art/terrain.js?v=5';
 
 const HUD_HEIGHT = 16; // höjden på den svarta HUD-listan överst (pixlar)
 
