@@ -1,9 +1,9 @@
 // =====================================================================
 //  GameScene – själva spelvärlden: karta, hjälte, fiender och kollisioner
 // =====================================================================
-import { MAP, TILE_SIZE, WALL_TILES } from '../data/map.js';
-import Player from '../entities/Player.js';
-import Slime from '../entities/Slime.js';
+import { MAP, TILE_SIZE, WALL_TILES } from '../data/map.js?v=2';
+import Player from '../entities/Player.js?v=2';
+import Slime from '../entities/Slime.js?v=2';
 
 const HUD_HEIGHT = 16; // höjden på den svarta HUD-listan överst (pixlar)
 

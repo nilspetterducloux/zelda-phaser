@@ -3,8 +3,8 @@
 //  Vi ritar varje pixel som en 1x1-rektangel med Phaser.Graphics och
 //  sparar resultatet med generateTexture(). Ingen extern grafik behövs!
 // =====================================================================
-import { PALETTE } from './palette.js';
-import * as S from './sprites.js';
+import { PALETTE } from './palette.js?v=2';
+import * as S from './sprites.js?v=2';
 
 // Ritar en pixel-matris till en textur med namnet "key"
 function makeTexture(scene, key, rows) {
