@@ -53,6 +53,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     this.buzz = null; // Web Audio-noder för brummandet, eller null
 
+    // Mellanslag kan redan vara nere när man lämnar titelskärmen.
+    // Vänta tills det släpps, så sågen inte startar av sig själv.
+    this.sawArmed = !this.keys.SPACE.isDown;
+
     // Stäng av ljudet om scenen försvinner (omstart, stängd flik)
     scene.events.once('shutdown', () => this.stopSaw());
     this.once('destroy', () => this.stopBuzz());
@@ -64,7 +68,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // Under knuff styr vi inte själva, och sågen stannar
     if (this.knockedBack) return;
 
-    const wantSaw = this.keys.SPACE.isDown && this.scene.status === 'playing';
+    if (!this.sawArmed) {
+      if (!this.keys.SPACE.isDown) this.sawArmed = true;
+    }
+    const wantSaw = this.sawArmed && this.keys.SPACE.isDown && this.scene.status === 'playing';
     if (wantSaw) this.startSaw();
     else this.stopSaw();
 

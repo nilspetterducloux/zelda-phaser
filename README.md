@@ -28,9 +28,10 @@ Phaser laddas från jsDelivr, så du behöver internet första gången.
 
 | Tangent                | Vad som händer                                                         |
 |------------------------|------------------------------------------------------------------------|
+| Mellanslag eller Enter | På titelskärmen: starta spelet                                         |
 | Piltangenter / WASD    | Gå åt fyra håll                                                        |
 | Mellanslag (håll inne) | Kör motorsågen åt det håll du tittar. Du kan gå långsammare samtidigt. |
-| R                      | Börja om (efter game over eller vinst)                                 |
+| R                      | Börja om spelet (efter game over eller vinst, inte via titeln)         |
 
 Du har tre hjärtan (varje träff kostar ett halvt). Slajmen tål tre träffar från motorsågen – håll sågen mot den en kort stund. Besegra alla fyra för att vinna!
 
@@ -51,7 +52,8 @@ zelda-phaser/
     ├── data/
     │   └── map.js          Kartan (40x30 rutor) ritad med tecken – lätt att ändra!
     ├── scenes/
-    │   ├── BootScene.js    Skapar grafik/typsnitt/animationer och startar spelet
+    │   ├── BootScene.js    Skapar grafik/typsnitt/animationer och startar titeln
+    │   ├── TitleScene.js   Titelskärm: solnedgång, silhuett, blinkande starttext
     │   ├── GameScene.js    Världen: karta, kamera, kollisioner, game over/vinst
     │   └── UIScene.js      HUD: hjärtan, antal slajm och meddelanden
     └── entities/

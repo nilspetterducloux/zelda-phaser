@@ -3,6 +3,7 @@
 //  Här ställer vi in Phaser: upplösning, skalning, fysik och scener.
 // =====================================================================
 import BootScene from './scenes/BootScene.js';
+import TitleScene from './scenes/TitleScene.js';
 import GameScene from './scenes/GameScene.js';
 import UIScene from './scenes/UIScene.js';
 
@@ -33,8 +34,8 @@ const config = {
     },
   },
 
-  // Scenerna körs i den här ordningen: Boot skapar grafik, sedan startar spelet
-  scene: [BootScene, GameScene, UIScene],
+  // Boot skapar grafik och startar titeln. Resten startas därifrån.
+  scene: [BootScene, TitleScene, GameScene, UIScene],
 };
 
 // Skapa spelet! (sparas på window så du kan leka med det i konsolen)
