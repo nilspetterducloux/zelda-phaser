@@ -106,6 +106,46 @@ export const SLIME_2 = [
   '................',
 ];
 
+// ---------- KULBJÖRN (två lurviga bollar i en säck) ----------
+// Den ljusa säcken är knuten upptill. Inuti syns två runda, bruna bollar
+// med varsitt öga. Andra rutan är samma djur som gungar.
+export const KULBJORN_1 = [
+  '.......K........',
+  '......KKK.......',
+  '.......t........',
+  '...KKK...KKKKB..',
+  '..KtttKKKttttK..',
+  '.KtyfBfttyBfftK.',
+  '.KBfKfbtffKfBfK.',
+  '.KfbBfftfBffffK.',
+  '.KffffBttffBbtK.',
+  '.KtBfftttbfffK..',
+  '..KKttttttttK...',
+  '....KttttttK....',
+  '....KTTTTTTK....',
+  '.....KTTTTK.....',
+  '......KKKK......',
+  '................',
+];
+export const KULBJORN_2 = [
+  '.......K........',
+  '......KKK.......',
+  '.......t........',
+  '...KKK...KKKK...',
+  '..KtttKKKttttK..',
+  '.KttfBfttfBfftK.',
+  '.KtyKfbttyKfBfK.',
+  '.KBfBfftfBBfffK.',
+  '.KfbffBttffbbtK.',
+  '.KtBfftttbfffK..',
+  '..KKttttttttK...',
+  '....KttttttK....',
+  '....KTTTTTTK....',
+  '.....KTTTTK.....',
+  '......KKKK......',
+  '................',
+];
+
 // ---------- MOTORSÅG (pekar uppåt – vi roterar den i koden) ----------
 // Stången med kedjan är överst, den orange motorn under.
 // Två bildrutor: tänderna på kedjan hoppar ett steg så att sågen ser ut att gå.

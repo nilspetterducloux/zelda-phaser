@@ -2,7 +2,7 @@
 //  UIScene – HUD:en (hjärtan, antal fiender) och game over-texten.
 //  Ligger som en egen scen ovanpå spelet, så den följer inte med kameran.
 // =====================================================================
-import { FONT_KEY } from '../art/font.js?v=2';
+import { FONT_KEY } from '../art/font.js?v=3';
 
 export default class UIScene extends Phaser.Scene {
   constructor() {
@@ -37,13 +37,13 @@ export default class UIScene extends Phaser.Scene {
 
     // Lyssna på ändringar i registry
     this.registry.events.on('changedata-health', this.updateHearts, this);
-    this.registry.events.on('changedata-slimesLeft', this.updateSlimes, this);
+    this.registry.events.on('changedata-enemiesLeft', this.updateSlimes, this);
     this.registry.events.on('changedata-status', this.updateStatus, this);
 
     // Viktigt: sluta lyssna när scenen stängs (annars dubbla lyssnare vid omstart)
     this.events.once('shutdown', () => {
       this.registry.events.off('changedata-health', this.updateHearts, this);
-      this.registry.events.off('changedata-slimesLeft', this.updateSlimes, this);
+      this.registry.events.off('changedata-enemiesLeft', this.updateSlimes, this);
       this.registry.events.off('changedata-status', this.updateStatus, this);
     });
   }
@@ -59,7 +59,7 @@ export default class UIScene extends Phaser.Scene {
   }
 
   updateSlimes() {
-    this.slimeText.setText(`SLAJM: ${this.registry.get('slimesLeft')}`);
+    this.slimeText.setText(`KVAR: ${this.registry.get('enemiesLeft')}`);
   }
 
   updateStatus() {

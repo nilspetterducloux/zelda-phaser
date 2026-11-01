@@ -1,9 +1,10 @@
 // =====================================================================
 //  GameScene – själva spelvärlden: karta, hjälte, fiender och kollisioner
 // =====================================================================
-import { MAP, TILE_SIZE, WALL_TILES } from '../data/map.js?v=2';
-import Player from '../entities/Player.js?v=2';
-import Slime from '../entities/Slime.js?v=2';
+import { MAP, TILE_SIZE, WALL_TILES } from '../data/map.js?v=3';
+import Player from '../entities/Player.js?v=3';
+import Slime from '../entities/Slime.js?v=3';
+import Kulbjorn from '../entities/Kulbjorn.js?v=3';
 
 const HUD_HEIGHT = 16; // höjden på den svarta HUD-listan överst (pixlar)
 
@@ -29,6 +30,7 @@ export default class GameScene extends Phaser.Scene {
 
     let playerStart = { x: 64, y: 64 };
     const slimeStarts = [];
+    const kulStarts = [];
 
     this.grid.forEach((row, ty) => {
       row.forEach((char, tx) => {
@@ -48,6 +50,8 @@ export default class GameScene extends Phaser.Scene {
           playerStart = { x, y };
         } else if (char === 'S') {
           slimeStarts.push({ x, y });
+        } else if (char === 'C') {
+          kulStarts.push({ x, y });
         }
       });
     });
@@ -59,20 +63,21 @@ export default class GameScene extends Phaser.Scene {
     this.player = new Player(this, playerStart.x, playerStart.y);
 
     // ---------- 3. Fiender ----------
-    // runChildUpdate: true gör att varje slajms update() anropas automatiskt
-    this.slimes = this.physics.add.group({ runChildUpdate: true });
-    slimeStarts.forEach((pos) => this.slimes.add(new Slime(this, pos.x, pos.y)));
+    // runChildUpdate: true gör att varje fiendes update() anropas automatiskt
+    this.enemies = this.physics.add.group({ runChildUpdate: true });
+    slimeStarts.forEach((pos) => this.enemies.add(new Slime(this, pos.x, pos.y)));
+    kulStarts.forEach((pos) => this.enemies.add(new Kulbjorn(this, pos.x, pos.y)));
 
     // ---------- 4. Kollisioner ----------
     this.physics.add.collider(this.player, this.walls);
-    this.physics.add.collider(this.slimes, this.walls);
-    // Slajm som nuddar hjälten skadar honom
-    this.physics.add.overlap(this.player, this.slimes, (player, slime) => {
-      player.takeDamage(slime);
+    this.physics.add.collider(this.enemies, this.walls);
+    // En fiende som nuddar hjälten skadar honom
+    this.physics.add.overlap(this.player, this.enemies, (player, enemy) => {
+      player.takeDamage(enemy);
     });
-    // Motorsågens träffyta skadar slajm så länge den är igång och rör vid dem
-    this.physics.add.overlap(this.player.sawHitbox, this.slimes, (hitbox, slime) => {
-      this.player.sawHits(slime);
+    // Motorsågens träffyta skadar fienden så länge den är igång och rör vid den
+    this.physics.add.overlap(this.player.sawHitbox, this.enemies, (hitbox, enemy) => {
+      this.player.sawHits(enemy);
     });
 
     // ---------- 5. Kamera ----------
@@ -85,7 +90,7 @@ export default class GameScene extends Phaser.Scene {
     // registry är ett delat "anteckningsblock" som alla scener kan läsa
     this.registry.set('maxHealth', this.player.maxHealth);
     this.registry.set('health', this.player.health);
-    this.registry.set('slimesLeft', this.slimes.countActive());
+    this.registry.set('enemiesLeft', this.enemies.countActive());
     this.registry.set('status', this.status);
 
     // Starta HUD-scenen ovanpå spelet
@@ -103,10 +108,10 @@ export default class GameScene extends Phaser.Scene {
     this.player.update(time, delta);
   }
 
-  // Anropas av Slime när den dör
-  onSlimeKilled() {
-    const left = this.slimes.countActive();
-    this.registry.set('slimesLeft', left);
+  // Anropas när en slajm eller kulbjörn dör
+  onEnemyKilled() {
+    const left = this.enemies.countActive();
+    this.registry.set('enemiesLeft', left);
     if (left === 0) this.endGame('won');
   }
 

@@ -82,6 +82,6 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
       onComplete: () => puff.destroy(),
     });
     this.destroy();
-    scene.onSlimeKilled();
+    scene.onEnemyKilled();
   }
 }

@@ -33,7 +33,7 @@ Phaser laddas från jsDelivr, så du behöver internet första gången.
 | Mellanslag (håll inne) | Kör motorsågen åt det håll du tittar. Du kan gå långsammare samtidigt. |
 | R                      | Börja om spelet (efter game over eller vinst, inte via titeln)         |
 
-Du har tre hjärtan (varje träff kostar ett halvt). Slajmen tål tre träffar från motorsågen – håll sågen mot den en kort stund. Besegra alla fyra för att vinna!
+Du har tre hjärtan (varje träff kostar ett halvt). Slajmen tål tre träffar från motorsågen, kulbjörnen tål fyra. Håll sågen mot dem en kort stund. Besegra alla fiender för att vinna!
 
 ## Filstruktur
 
@@ -55,10 +55,11 @@ zelda-phaser/
     │   ├── BootScene.js    Skapar grafik/typsnitt/animationer och startar titeln
     │   ├── TitleScene.js   Titelskärm: solnedgång, silhuett, blinkande starttext
     │   ├── GameScene.js    Världen: karta, kamera, kollisioner, game over/vinst
-    │   └── UIScene.js      HUD: hjärtan, antal slajm och meddelanden
+    │   └── UIScene.js      HUD: hjärtan, antal fiender och meddelanden
     └── entities/
         ├── Player.js       Hjälten: rörelse, motorsåg, skada, knuff, osårbarhet
-        └── Slime.js        Fienden: slumpvis vandring, träffar och död
+        ├── Slime.js        Fienden: slumpvis vandring, träffar och död
+        └── Kulbjorn.js     Kulbjörnen: två bollar i en säck, som vaggar och studsar
 ```
 
 Tips: sätt `debug: true` i `src/main.js` så ser du alla kollisionslådor.
