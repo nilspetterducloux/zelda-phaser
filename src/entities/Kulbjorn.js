@@ -1,10 +1,11 @@
 // =====================================================================
 //  Kulbjorn – en brun, hårig fiende som ser ut som två bollar i en säck.
-//  Den vaggar framåt och studsar ibland. Tål 4 träffar från motorsågen.
+//  Den studsar runt på samma sätt som slajmen. Tål 4 träffar från motorsågen.
 // =====================================================================
 
-// Kulbjörnen står sällan still. Den väljer ett håll och vaggar dit.
+// Samma riktningar som slajmen: stå still, höger, vänster, ner, upp
 const DIRECTIONS = [
+  { x: 0, y: 0 },
   { x: 1, y: 0 },
   { x: -1, y: 0 },
   { x: 0, y: 1 },
@@ -24,47 +25,28 @@ export default class Kulbjorn extends Phaser.Physics.Arcade.Sprite {
     this.anims.setProgress(Math.random());
 
     this.hp = 4;
-    this.speed = 24;          // långsammare än slajmen, den är tung
+    this.speed = 30; // samma fart som slajmen
     this.hurt = false;
-    this.moveTimer = 0;
-    this.bounceTimer = Phaser.Math.Between(400, 900);
+    this.moveTimer = 0; // när den når 0 väljer vi en ny riktning
   }
 
+  // Anropas automatiskt varje bildruta (tack vare runChildUpdate)
   update(time, delta) {
     this.setDepth(this.y);
-    if (this.hurt) return;
+    if (this.hurt) return; // under knuff vandrar vi inte
 
     this.moveTimer -= delta;
-    this.bounceTimer -= delta;
-
+    // Ny riktning när tiden gått ut, eller om vi gått in i en vägg
     if (this.moveTimer <= 0 || this.body.blocked.left || this.body.blocked.right ||
         this.body.blocked.up || this.body.blocked.down) {
       this.pickDirection();
-    }
-
-    // Bollarna studsar i säcken: ett kort ryck framåt
-    if (this.bounceTimer <= 0) {
-      this.bounce();
     }
   }
 
   pickDirection() {
     const dir = Phaser.Utils.Array.GetRandom(DIRECTIONS);
-    this.dirX = dir.x;
-    this.dirY = dir.y;
     this.setVelocity(dir.x * this.speed, dir.y * this.speed);
-    this.moveTimer = Phaser.Math.Between(900, 1800);
-  }
-
-  bounce() {
-    this.bounceTimer = Phaser.Math.Between(900, 1500);
-    const vx = this.dirX || 0;
-    const vy = this.dirY || 0;
-    this.setVelocity(vx * 88, vy * 88);
-    this.scene.time.delayedCall(150, () => {
-      if (!this.active || this.hurt) return;
-      this.setVelocity(vx * this.speed, vy * this.speed);
-    });
+    this.moveTimer = Phaser.Math.Between(700, 1800); // millisekunder
   }
 
   // Träffad av motorsågen. (fromX, fromY) = var hjälten står.
@@ -74,10 +56,11 @@ export default class Kulbjorn extends Phaser.Physics.Arcade.Sprite {
     this.hurt = true;
     this.setTintFill(0xffffff);
 
+    // Samma knuff som slajmen får
     const angle = Phaser.Math.Angle.Between(fromX, fromY, this.x, this.y);
-    this.setVelocity(Math.cos(angle) * 120, Math.sin(angle) * 120);
+    this.setVelocity(Math.cos(angle) * 140, Math.sin(angle) * 140);
 
-    this.scene.time.delayedCall(140, () => {
+    this.scene.time.delayedCall(130, () => {
       if (!this.active) return;
       this.clearTint();
       this.hurt = false;

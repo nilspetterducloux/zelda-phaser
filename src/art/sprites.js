@@ -108,7 +108,7 @@ export const SLIME_2 = [
 
 // ---------- KULBJÖRN ----------
 // Två orange bollar i en säck som är knuten upptill, med stora ögon.
-// 24x32 pixlar så ögonen syns. Andra rutan blinkar med ena ögat.
+// 24x32 pixlar så ögonen syns. Andra rutan är ihoptryckt, som slajmens studs.
 export const KULBJORN_1 = [
   '...........KK...........',
   '...........WK...........',
@@ -144,14 +144,14 @@ export const KULBJORN_1 = [
   '.....K....K...K.....K...',
 ];
 export const KULBJORN_2 = [
+  '........................',
+  '........................',
+  '........................',
   '...........KK...........',
   '...........WK...........',
   '..........KjqK..........',
-  '..........KqqK..........',
   '..........KqjK..........',
-  '..........KqqK..........',
   '.........KqjqQK.........',
-  '.........KqqqQK.........',
   '.........KjqjQK.........',
   '........KqqqqQQK........',
   '........KjqjqQQK........',
@@ -161,15 +161,15 @@ export const KULBJORN_2 = [
   '.......KqjqnnQQQK.......',
   '......KQqqqnQQQQQK......',
   '.K..KKQQjqjnQQQQQK....K.',
-  '...KQQQQqqqnQQQQQqKK....',
-  '..KQQQQQqjqnQQQQWjqjK...',
-  '.KQQQQQQqqqnQQWWWWWqqK..',
-  'KKQQQQQQjqjnQWeWWWWWjK..',
-  '.KQQKKKKKKKnQWWWKKWWqqKK',
-  '.KqjqjqjqjqnWWWKKKWWWjK.',
-  '.KqqqqqqqqqnnWWWKKWWqqK.',
-  '.KjqjqjqjqjnnWWWWWWWjqK.',
-  '.KqqNqqqqqqnnnWWWWWNqqK.',
+  '...KQQQWqqqnQQQQQqKK....',
+  '..KQQWWWWWqnQQQQWjqjK...',
+  '.KQQWeWWWWWnQQWWWWWqqK..',
+  'KKQQWWWKKWWnQWeWWWWWjK..',
+  '.KQWWWKKKWWWQWWWKKWWqqKK',
+  '.KqjWWWKKWWnWWWKKKWWWjK.',
+  '.KqqWWWWWWWnnWWWKKWWqqK.',
+  '.KjqjWWWWWjnnWWWWWWWjqK.',
+  '.KqqNqqWqqqnnnWWWWWNqqK.',
   '..KNNNNNNNNNnnqjWjNjqK..',
   '...KNNNNNNNKNNNNNNNNK.K.',
   '..K.KKKKKKK.KKNNNNNK....',

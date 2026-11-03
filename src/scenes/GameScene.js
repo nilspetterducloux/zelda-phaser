@@ -1,10 +1,10 @@
 // =====================================================================
 //  GameScene – själva spelvärlden: karta, hjälte, fiender och kollisioner
 // =====================================================================
-import { MAP, TILE_SIZE, WALL_TILES } from '../data/map.js?v=6';
-import Player from '../entities/Player.js?v=6';
-import Slime from '../entities/Slime.js?v=6';
-import Kulbjorn from '../entities/Kulbjorn.js?v=6';
+import { MAP, TILE_SIZE, WALL_TILES } from '../data/map.js?v=7';
+import Player from '../entities/Player.js?v=7';
+import Slime from '../entities/Slime.js?v=7';
+import Kulbjorn from '../entities/Kulbjorn.js?v=7';
 
 const HUD_HEIGHT = 16; // höjden på den svarta HUD-listan överst (pixlar)
 

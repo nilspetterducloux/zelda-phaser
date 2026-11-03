@@ -3,8 +3,8 @@
 //  Vi ritar varje pixel som en 1x1-rektangel med Phaser.Graphics och
 //  sparar resultatet med generateTexture(). Ingen extern grafik behövs!
 // =====================================================================
-import { PALETTE } from './palette.js?v=6';
-import * as S from './sprites.js?v=6';
+import { PALETTE } from './palette.js?v=7';
+import * as S from './sprites.js?v=7';
 
 // Ritar en pixel-matris till en textur med namnet "key"
 function makeTexture(scene, key, rows) {
@@ -85,11 +85,11 @@ export function createAnimations(scene) {
     repeat: -1,
   });
 
-  // Säkten gungar så att bollarna ser ut att rulla där inne
+  // Samma takt som slajmen: upp, ner, upp, ner
   scene.anims.create({
     key: 'kulbjorn-waddle',
     frames: [{ key: 'kulbjorn-1' }, { key: 'kulbjorn-2' }],
-    frameRate: 4,
+    frameRate: 3,
     repeat: -1,
   });
 
