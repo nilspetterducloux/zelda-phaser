@@ -2,9 +2,6 @@
 
 Ett litet top-down-äventyr i NES-stil, byggt från grunden med [Phaser 3](https://docs.phaser.io/) (v3.90.0).
 Hjälten har varken tunika eller mössa – bara kalsonger – och slåss med en motorsåg.
-Världen är Arvika, omgjord till ett Zelda-rike: Kyrkviken i söder, Ingestrand i väster,
-Dotteviks hamn i öster, Graninge i norr, stationen norr om Stora torget och
-Trefaldighetskyrkan strax ovanför torget. Kartan är 512×512 rutor.
 All grafik – hjälten, slajmen, motorsågen, träden, hjärtan och till och med typsnittet – ritas **i kod** som små
 pixel-matriser. Inga bildfiler, inget byggsteg. Ljudet till sågen skapas i webbläsaren, utan ljudfiler.
 

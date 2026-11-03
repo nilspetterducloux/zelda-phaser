@@ -2,7 +2,7 @@
 //  UIScene – HUD:en (hjärtan, antal fiender) och game over-texten.
 //  Ligger som en egen scen ovanpå spelet, så den följer inte med kameran.
 // =====================================================================
-import { FONT_KEY } from '../art/font.js?v=5';
+import { FONT_KEY } from '../art/font.js?v=6';
 
 export default class UIScene extends Phaser.Scene {
   constructor() {
